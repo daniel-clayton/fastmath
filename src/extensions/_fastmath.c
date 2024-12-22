@@ -638,6 +638,44 @@ _cffi_f_naive_sum(PyObject *self, PyObject *args)
 #  define _cffi_f_naive_sum _cffi_d_naive_sum
 #endif
 
+static int _cffi_d_sum1x128_32(int const * x0)
+{
+  return sum1x128_32(x0);
+}
+#ifndef PYPY_VERSION
+static PyObject *
+_cffi_f_sum1x128_32(PyObject *self, PyObject *arg0)
+{
+  int const * x0;
+  Py_ssize_t datasize;
+  struct _cffi_freeme_s *large_args_free = NULL;
+  int result;
+  PyObject *pyresult;
+
+  datasize = _cffi_prepare_pointer_call_argument(
+      _cffi_type(1), arg0, (char **)&x0);
+  if (datasize != 0) {
+    x0 = ((size_t)datasize) <= 640 ? (int const *)alloca((size_t)datasize) : NULL;
+    if (_cffi_convert_array_argument(_cffi_type(1), arg0, (char **)&x0,
+            datasize, &large_args_free) < 0)
+      return NULL;
+  }
+
+  Py_BEGIN_ALLOW_THREADS
+  _cffi_restore_errno();
+  { result = sum1x128_32(x0); }
+  _cffi_save_errno();
+  Py_END_ALLOW_THREADS
+
+  (void)self; /* unused */
+  pyresult = _cffi_from_c_int(result, int);
+  if (large_args_free != NULL) _cffi_free_array_arguments(large_args_free);
+  return pyresult;
+}
+#else
+#  define _cffi_f_sum1x128_32 _cffi_d_sum1x128_32
+#endif
+
 static int _cffi_d_sum256_32(int const * x0)
 {
   return sum256_32(x0);
@@ -714,6 +752,44 @@ _cffi_f_sum32(PyObject *self, PyObject *arg0)
 #  define _cffi_f_sum32 _cffi_d_sum32
 #endif
 
+static int _cffi_d_sum4x128_32(int const * x0)
+{
+  return sum4x128_32(x0);
+}
+#ifndef PYPY_VERSION
+static PyObject *
+_cffi_f_sum4x128_32(PyObject *self, PyObject *arg0)
+{
+  int const * x0;
+  Py_ssize_t datasize;
+  struct _cffi_freeme_s *large_args_free = NULL;
+  int result;
+  PyObject *pyresult;
+
+  datasize = _cffi_prepare_pointer_call_argument(
+      _cffi_type(1), arg0, (char **)&x0);
+  if (datasize != 0) {
+    x0 = ((size_t)datasize) <= 640 ? (int const *)alloca((size_t)datasize) : NULL;
+    if (_cffi_convert_array_argument(_cffi_type(1), arg0, (char **)&x0,
+            datasize, &large_args_free) < 0)
+      return NULL;
+  }
+
+  Py_BEGIN_ALLOW_THREADS
+  _cffi_restore_errno();
+  { result = sum4x128_32(x0); }
+  _cffi_save_errno();
+  Py_END_ALLOW_THREADS
+
+  (void)self; /* unused */
+  pyresult = _cffi_from_c_int(result, int);
+  if (large_args_free != NULL) _cffi_free_array_arguments(large_args_free);
+  return pyresult;
+}
+#else
+#  define _cffi_f_sum4x128_32 _cffi_d_sum4x128_32
+#endif
+
 static int _cffi_d_sum64(long long const * x0)
 {
   return sum64(x0);
@@ -752,11 +828,52 @@ _cffi_f_sum64(PyObject *self, PyObject *arg0)
 #  define _cffi_f_sum64 _cffi_d_sum64
 #endif
 
+static int _cffi_d_sum64_32(int const * x0)
+{
+  return sum64_32(x0);
+}
+#ifndef PYPY_VERSION
+static PyObject *
+_cffi_f_sum64_32(PyObject *self, PyObject *arg0)
+{
+  int const * x0;
+  Py_ssize_t datasize;
+  struct _cffi_freeme_s *large_args_free = NULL;
+  int result;
+  PyObject *pyresult;
+
+  datasize = _cffi_prepare_pointer_call_argument(
+      _cffi_type(1), arg0, (char **)&x0);
+  if (datasize != 0) {
+    x0 = ((size_t)datasize) <= 640 ? (int const *)alloca((size_t)datasize) : NULL;
+    if (_cffi_convert_array_argument(_cffi_type(1), arg0, (char **)&x0,
+            datasize, &large_args_free) < 0)
+      return NULL;
+  }
+
+  Py_BEGIN_ALLOW_THREADS
+  _cffi_restore_errno();
+  { result = sum64_32(x0); }
+  _cffi_save_errno();
+  Py_END_ALLOW_THREADS
+
+  (void)self; /* unused */
+  pyresult = _cffi_from_c_int(result, int);
+  if (large_args_free != NULL) _cffi_free_array_arguments(large_args_free);
+  return pyresult;
+}
+#else
+#  define _cffi_f_sum64_32 _cffi_d_sum64_32
+#endif
+
 static const struct _cffi_global_s _cffi_globals[] = {
   { "naive_sum", (void *)_cffi_f_naive_sum, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_V, 3), (void *)_cffi_d_naive_sum },
+  { "sum1x128_32", (void *)_cffi_f_sum1x128_32, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 0), (void *)_cffi_d_sum1x128_32 },
   { "sum256_32", (void *)_cffi_f_sum256_32, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 0), (void *)_cffi_d_sum256_32 },
   { "sum32", (void *)_cffi_f_sum32, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 0), (void *)_cffi_d_sum32 },
+  { "sum4x128_32", (void *)_cffi_f_sum4x128_32, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 0), (void *)_cffi_d_sum4x128_32 },
   { "sum64", (void *)_cffi_f_sum64, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 7), (void *)_cffi_d_sum64 },
+  { "sum64_32", (void *)_cffi_f_sum64_32, _CFFI_OP(_CFFI_OP_CPYTHON_BLTN_O, 0), (void *)_cffi_d_sum64_32 },
 };
 
 static const struct _cffi_type_context_s _cffi_type_context = {
@@ -766,7 +883,7 @@ static const struct _cffi_type_context_s _cffi_type_context = {
   NULL,  /* no struct_unions */
   NULL,  /* no enums */
   NULL,  /* no typenames */
-  4,  /* num_globals */
+  7,  /* num_globals */
   0,  /* num_struct_unions */
   0,  /* num_enums */
   0,  /* num_typenames */
